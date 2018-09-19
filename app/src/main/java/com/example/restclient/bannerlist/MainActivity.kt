@@ -8,6 +8,8 @@ import android.widget.Toast
 import com.example.restclient.App
 import com.example.restclient.R
 import com.example.restclient.model.BannerResponse
+import com.example.restclient.model.ProductParms
+import com.example.restclient.model.ProductResponse
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,5 +44,16 @@ class MainActivity : AppCompatActivity() {
                         progressDialog.hide()
                     }
                 })
+        (application as App).api
+                .getProducts(ProductParms(1,2,"seller"))
+                .enqueue(object : Callback<ProductResponse>{
+                    override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+
+                    }
+
+                    override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
+                    }
+                })
+
     }
 }
